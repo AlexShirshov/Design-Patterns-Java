@@ -127,14 +127,36 @@ public class ComputerBuilder {
 		
 		return suArray;
 	}
+
+	
+	
+	
+	public ArrayList<CPU> getCpuList() {
+		return cpuList;
+	}
+
+	public void setCPUList(ArrayList<CPU> cpuList) {
+		this.cpuList = cpuList;
+	}
+
+	public ArrayList<GPU> getGpuList() {
+		return gpuList;
+	}
+
+	public void setGPUList(ArrayList<GPU> gpuList) {
+		this.gpuList = gpuList;
+	}
+
+	public ArrayList<Motherboard> getMotherboardList() {
+		return mbList;
+	}
+
+	public void setMotherboardList(ArrayList<Motherboard> mbList) {
+		this.mbList = mbList;
+	}
 	
 	
 	
 	
-	
-	
-	
-	
-	
-	
+
 }

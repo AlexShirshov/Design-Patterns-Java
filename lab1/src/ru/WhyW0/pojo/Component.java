@@ -16,11 +16,15 @@ public abstract class Component implements IPrintable {
 		this.type = type;
 	}
 
-	@Override
-	public String toString() {
-		return "Component [manufacturer=" + manufacturer + ", name=" + name + ", type=" + type + "]";
+	public boolean isEmpty() {
+		return this.name.isEmpty() && 
+				this.type.isEmpty() && 
+				this.manufacturer.isEmpty();
 	}
 	
-	
-
+	@Override
+	public String toString() {
+		return "Component [manufacturer=" + manufacturer + 
+				", name=" + name + ", type=" + type + "]";
+	}
 }

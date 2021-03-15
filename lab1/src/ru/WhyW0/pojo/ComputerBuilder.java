@@ -23,21 +23,38 @@ public class ComputerBuilder {
 		ArrayList<SystemUnit> uList = new ArrayList<>();
 		for(Motherboard mb : mbList) {
 			for(CPU cpu : cpuList) {
-				if(cpu.socket == mb.socket) {
-					SystemUnit uTemp = new SystemUnit();
+				SystemUnit uTemp = new SystemUnit();
+				
+				// Checking compatibility CPU and motherboard
+				if(cpu.socket == mb.socket) {	
 					uTemp.setCPU(cpu);
 					uTemp.setMotherboard(mb);
-					
+				}
+				
+				// We can add GPU only if we have motherboard
+				if(uTemp.getMotherboard() != null) {
+					// Checking compatibility motherboard and GPU
 					for(GPU gpu : gpuList) {
 						if(mb.pci == gpu.pci) {
 							uTemp.setGPU(gpu);
 						}
 					}
-					
+				}
+				
+				// TODO:
+				// Probably we will change it later, but right let's
+				// build only when we have all components
+				if(uTemp.isFull()) {
 					uList.add(uTemp);
 				}
 			}
 		}
+		
+		// TODO:
+		// Checking if we don't have all components
+		// like we have only GPU etc
+		///if(uList.get(uList.size() - 1).getCPU() == null)
+		///	return null;
 		
 		SystemUnit[] uArr = new SystemUnit[uList.size()];
 		uList.toArray(uArr);

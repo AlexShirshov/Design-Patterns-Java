@@ -16,6 +16,13 @@ public class SystemUnit implements IPrintable {
 		this.cpu = cpu;
 		this.gpu = gpu;
 	}
+	
+	// Return true if we have all components otherwise false
+	public boolean isFull() {
+		return this.mb != null && 
+				this.cpu != null && 
+				this.gpu != null;
+	}
 
 
 
@@ -51,9 +58,12 @@ public class SystemUnit implements IPrintable {
 
 	@Override
 	public String getDescription() {
-		return cpu.getDescription() + "\n" + 
-			   gpu.getDescription() + "\n" + 
-			   mb.getDescription() + "\n";
+		// FIXME: If we don't have all components we can get null error
+		// TODO: Checking it BEFORE calling the function
+		// We should check it for null
+		return (cpu == null ? "" : cpu.getDescription() + "\n") + 
+			   (gpu == null ? "" : gpu.getDescription() + "\n") + 
+			   (mb == null ? "" : mb.getDescription() + "\n");
 	}
 
 

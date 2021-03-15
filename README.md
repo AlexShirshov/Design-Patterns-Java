@@ -1,5 +1,6 @@
 # Design-Patterns-Java
 Laboratory work of the course NNTU IRIT IVT Software Design Patterns on Java
+
 Devs: Mikhail Yurchyk & Alexey Shirshov
 
 # Лаб 1 | 5 Вариант

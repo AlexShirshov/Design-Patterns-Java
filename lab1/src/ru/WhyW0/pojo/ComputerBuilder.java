@@ -23,23 +23,22 @@ public class ComputerBuilder {
 		ArrayList<SystemUnit> uList = new ArrayList<>();
 		for(Motherboard mb : mbList) {
 			SystemUnit uTemp = new SystemUnit();
+			uTemp.setMotherboard(mb);
 			
 			// Checking CPU
 			for(CPU cpu : cpuList) {	
 				// Checking compatibility CPU and motherboard
-				if(cpu.socket == mb.socket) {	
-					uTemp.setCPU(cpu);
-					uTemp.setMotherboard(mb);
+				CPU compCPU = uTemp.getCompatible(cpu);
+				if(compCPU != null) {	
+					uTemp.setCPU(compCPU);
 				}
 			}
 			
-			// We can add GPU only if we have a motherboard
-			if(uTemp.getMotherboard() != null) {
+			for(GPU gpu : gpuList) {
 				// Checking compatibility motherboard and GPU
-				for(GPU gpu : gpuList) {
-					if(mb.pci == gpu.pci) {
-						uTemp.setGPU(gpu);
-					}
+				GPU compGPU = uTemp.getCompatible(gpu);
+				if(compGPU != null) {
+					uTemp.setGPU(compGPU);
 				}
 			}
 			

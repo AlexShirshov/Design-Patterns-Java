@@ -1,17 +1,18 @@
 package ru.WhyW0.pojo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ComputerBuilder {
-	private ArrayList<CPU> cpuList;
-	private ArrayList<GPU> gpuList;
-	private ArrayList<Motherboard> mbList;
+	private List<CPU> cpuList;
+	private List<GPU> gpuList;
+	private List<Motherboard> mbList;
 	
 	public ComputerBuilder() {
 		super();
 	}
 
-	public ComputerBuilder(ArrayList<CPU> cpuList, ArrayList<GPU> gpuList, ArrayList<Motherboard> mbList) {
+	public ComputerBuilder(List<CPU> cpuList, List<GPU> gpuList, List<Motherboard> mbList) {
 		super();
 		this.cpuList = cpuList;
 		this.gpuList = gpuList;
@@ -27,7 +28,7 @@ public class ComputerBuilder {
 			// Checking CPU
 			for(CPU cpu : cpuList) {	
 				// Checking compatibility CPU and motherboard
-				if(cpu.socket == mb.socket) {	
+				if(cpu.socket.equals(mb.socket)) {	
 					uTemp.setCPU(cpu);
 					uTemp.setMotherboard(mb);
 				}
@@ -37,7 +38,7 @@ public class ComputerBuilder {
 			if(uTemp.getMotherboard() != null) {
 				// Checking compatibility motherboard and GPU
 				for(GPU gpu : gpuList) {
-					if(mb.pci == gpu.pci) {
+					if(mb.pci.equals(gpu.pci)) {
 						uTemp.setGPU(gpu);
 					}
 				}

@@ -26,8 +26,4 @@ public class Motherboard extends Component {
 				   " * Socket: " + socket + "\n" +
 				   " * PCI: " + pci;
 	}
-	
-	
-	
-	
 }

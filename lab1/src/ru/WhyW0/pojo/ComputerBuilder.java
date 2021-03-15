@@ -3,15 +3,15 @@ package ru.WhyW0.pojo;
 import java.util.ArrayList;
 
 public class ComputerBuilder {
-	private CPU[] cpuList;
-	private GPU[] gpuList;
-	private Motherboard[] mbList;
+	private ArrayList<CPU> cpuList;
+	private ArrayList<GPU> gpuList;
+	private ArrayList<Motherboard> mbList;
 	
 	public ComputerBuilder() {
 		super();
 	}
 
-	public ComputerBuilder(CPU[] cpuList, GPU[] gpuList, Motherboard[] mbList) {
+	public ComputerBuilder(ArrayList<CPU> cpuList, ArrayList<GPU> gpuList, ArrayList<Motherboard> mbList) {
 		super();
 		this.cpuList = cpuList;
 		this.gpuList = gpuList;
@@ -19,7 +19,7 @@ public class ComputerBuilder {
 	}
 	
 	public SystemUnit[] run()
-	{
+	{	
 		ArrayList<SystemUnit> uList = new ArrayList<>();
 		for(Motherboard mb : mbList) {
 			SystemUnit uTemp = new SystemUnit();
@@ -33,7 +33,7 @@ public class ComputerBuilder {
 				}
 			}
 			
-			// We can add GPU only if we have motherboard
+			// We can add GPU only if we have a motherboard
 			if(uTemp.getMotherboard() != null) {
 				// Checking compatibility motherboard and GPU
 				for(GPU gpu : gpuList) {

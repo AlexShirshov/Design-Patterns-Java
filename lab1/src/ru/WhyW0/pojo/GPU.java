@@ -20,9 +20,4 @@ public class GPU extends Component {
 		return "[" + type + "] " + manufacturer + " " + name + "\n" +
 				   " * PCI: " + pci;
 	}
-	
-	
-	
-	
-
 }

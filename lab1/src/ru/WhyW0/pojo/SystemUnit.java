@@ -25,7 +25,7 @@ public class SystemUnit implements IPrintable {
 	}
 	
 	public CPU getCompatible(CPU cpu) {
-		if(cpu.socket == this.mb.socket) {
+		if(cpu.socket.equals(this.mb.socket)) {
 			return cpu;
 		}
 		
@@ -33,7 +33,7 @@ public class SystemUnit implements IPrintable {
 	}
 	
 	public GPU getCompatible(GPU gpu) {
-		if(gpu.pci == mb.pci) {
+		if(gpu.pci.equals(this.mb.pci)) {
 			return gpu;
 		}
 		
@@ -42,7 +42,7 @@ public class SystemUnit implements IPrintable {
 	
 	public Motherboard getCompatible(Motherboard mb) {
 		if(this.cpu != null) {
-			if(this.cpu.socket == mb.socket) {
+			if(this.cpu.socket.equals(mb.socket)) {
 				return mb;
 			}
 		}
@@ -52,8 +52,6 @@ public class SystemUnit implements IPrintable {
 		
 		return null;
 	}
-
-
 
 	public Motherboard getMotherboard() {
 		return mb;
@@ -94,11 +92,4 @@ public class SystemUnit implements IPrintable {
 			   (gpu == null ? "" : (gpu.getDescription() + "\n")) + 
 			   (mb == null ? "" : (mb.getDescription() + "\n"));
 	}
-
-
-
-	
-	
-	
-
 }

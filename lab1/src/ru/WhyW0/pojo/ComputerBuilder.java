@@ -21,26 +21,26 @@ public class ComputerBuilder {
 	
 	public SystemUnit[] run()
 	{	
+		/*
 		ArrayList<SystemUnit> uList = new ArrayList<>();
 		for(Motherboard mb : mbList) {
 			SystemUnit uTemp = new SystemUnit();
+			uTemp.setMotherboard(mb);
 			
 			// Checking CPU
 			for(CPU cpu : cpuList) {	
 				// Checking compatibility CPU and motherboard
-				if(cpu.socket.equals(mb.socket)) {	
-					uTemp.setCPU(cpu);
-					uTemp.setMotherboard(mb);
+				CPU compCPU = uTemp.getCompatible(cpu);
+				if(compCPU != null) {	
+					uTemp.setCPU(compCPU);
 				}
 			}
 			
-			// We can add GPU only if we have a motherboard
-			if(uTemp.getMotherboard() != null) {
+			for(GPU gpu : gpuList) {
 				// Checking compatibility motherboard and GPU
-				for(GPU gpu : gpuList) {
-					if(mb.pci.equals(gpu.pci)) {
-						uTemp.setGPU(gpu);
-					}
+				GPU compGPU = uTemp.getCompatible(gpu);
+				if(compGPU != null) {
+					uTemp.setGPU(compGPU);
 				}
 			}
 			
@@ -62,39 +62,37 @@ public class ComputerBuilder {
 		uList.toArray(uArr);
 		
 		return uArr;
+		*/
 		
-		/*ArrayList<SystemUnit> suList = new ArrayList<>();
-		for(CPU cpu : cpuList)
-		{	
+		// First we set all motherboards and get all
+		// variants of system units
+		ArrayList<SystemUnit> suList = new ArrayList<>();
+		for(Motherboard mb : mbList) {	
 			SystemUnit temp = new SystemUnit();
-			temp.setCPU(cpu);
+			temp.setMotherboard(mb);
 			suList.add(temp);
 		}
 		
 		ArrayList<SystemUnit> tempList = new ArrayList<>();
 		
-		for(SystemUnit su : suList)
-		{
-			ArrayList<Motherboard> filteredMb = new ArrayList<>();
-			for(Motherboard mb : mbList)
-			{
-				if(su.cpu.socket == mb.socket)
-				{
-					filteredMb.add(mb);
+		for(SystemUnit su : suList) {
+			ArrayList<CPU> filteredCPU = new ArrayList<>();
+			for(CPU cpu : cpuList) {
+				if(su.getCompatible(cpu) != null) {
+					filteredCPU.add(cpu);
 				}
 			}
 			
-			for(Motherboard filMb : filteredMb)
-			{
+			for(CPU cpu : filteredCPU) {
 				SystemUnit temp = su;
-				temp.setMotherboard(filMb);
+				temp.setCPU(cpu);
 				tempList.add(temp);
 			}
 		}
 		
 		// присвоение копирует список, т.е. у них становятся одинаковые
 		// адреса так что его надо юзать аккуратно
-		// любые действия со вторым списом, изменят первый
+		// любые действия со вторым списком, изменят первый
 		//suList = tempList;
 		
 		suList = (ArrayList<SystemUnit>) tempList.clone();
@@ -106,36 +104,50 @@ public class ComputerBuilder {
 			ArrayList<GPU> filteredGPU = new ArrayList<>();
 			for(GPU gpu : gpuList)
 			{
-				if(su.mb.pci == gpu.pci)
+				if(su.getCompatible(gpu) != null)
 				{
 					filteredGPU.add(gpu);
 				}
 			}
 			
-			for(GPU filGPU : filteredGPU)
+			for(GPU gpu : filteredGPU)
 			{
 				SystemUnit temp = su;
-				temp.setGPU(filGPU);
+				temp.setGPU(gpu);
 				tempList.add(temp);
 			}
 		}
 		
 		suList = tempList;
-		
+	
 		
 		SystemUnit[] suArray = new SystemUnit[suList.size()];
 		suList.toArray(suArray);
 		
-		return suArray;*/
+		return suArray;
+	}	
+	
+	public List<CPU> getCpuList() {
+		return cpuList;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	public void setCPUList(List<CPU> cpuList) {
+		this.cpuList = cpuList;
+	}
+
+	public List<GPU> getGpuList() {
+		return gpuList;
+	}
+
+	public void setGPUList(List<GPU> gpuList) {
+		this.gpuList = gpuList;
+	}
+
+	public List<Motherboard> getMotherboardList() {
+		return mbList;
+	}
+
+	public void setMotherboardList(List<Motherboard> mbList) {
+		this.mbList = mbList;
+	}
 }

@@ -1,5 +1,5 @@
 # Eclipse
-.classpath
+*.classpath
 .project
 .settings/
 
@@ -7,3 +7,6 @@
 .idea/
 *.iml
 *.iws
+
+# Other
+*/extra

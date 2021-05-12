@@ -7,7 +7,6 @@ public abstract class Component implements IPrintable {
 	protected String name;
 	public String type;
 	
-	
 	/**
 	 * Default constructor
 	 */
@@ -33,21 +32,9 @@ public abstract class Component implements IPrintable {
 	 * @return True  if component is empty
 	 * 		   False if component has 1 or more filled fields 	
 	 */
-	public boolean isEmpty() {
+	public boolean IsEmpty() {
 		return this.name.isEmpty() && 
 				this.type.isEmpty() && 
 				this.manufacturer.isEmpty();
-	}
-	
-	/**
-	 * @return info about object
-	 * 1) manufacturer
-	 * 2) name
-	 * 3) type
-	 */
-	@Override
-	public String toString() {
-		return "Component [manufacturer=" + manufacturer + 
-				", name=" + name + ", type=" + type + "]";
 	}
 }

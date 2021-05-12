@@ -15,7 +15,7 @@ import java.util.*;
 public class Handler {
 	private static final String CON_STR = "jdbc:sqlite:db.db";
 
-	// Объект, в котором будет храниться соединение с БД
+	// Object for connection storage with DataBase
 	private Connection connection;
 	
 	/**
@@ -24,11 +24,10 @@ public class Handler {
 	 * @throws SQLException if we have any problems with the SQLite driver
 	 */
 	private Handler() throws SQLException {
-		// Регистрируем драйвер, с которым будем работать
-		// в нашем случае Sqlite
+		// Registering driver for working with SQLite
 		DriverManager.registerDriver(new JDBC());
 
-		// Выполняем подключение к базе данных
+		// Connecting to database
 		this.connection = DriverManager.getConnection(CON_STR);
 	}
 
@@ -38,28 +37,27 @@ public class Handler {
 	 * @return List<CPU> - list with CPU's
 	 */
 	public List<CPU> getCPU() {
-		// Statement используется для того, чтобы выполнить sql-запрос
+		// Using statement for SQL-Query
 		try (Statement statement = this.connection.createStatement()) {
-			// В данный список будем загружать наши продукты, полученные из БД
+			// Storage all information about product from database
 			List<CPU> products = new ArrayList<CPU>();
 
-			// В resultSet будет храниться результат нашего запроса,
-			// который выполняется командой statement.executeQuery()
+			// Storage result of execute query 
 			ResultSet resultSet = statement.executeQuery("SELECT * FROM products WHERE type = 'CPU'");
 
-			// Проходимся по нашему resultSet и заносим данные в products
+			// Adding information from DB to list products
 			while (resultSet.next()) {
 				products.add(new CPU(resultSet.getString("manufacturer"), resultSet.getString("name"),
 						resultSet.getString("type"), resultSet.getString("socket"), resultSet.getInt("amount_cores"),
 						resultSet.getDouble("clock")));
 			}
-			// Возвращаем наш список
+			// Returning list with information
 			return products;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 
-			// Если произошла ошибка - возвращаем пустую коллекцию
+			// We got some error so just return  empty list
 			return Collections.emptyList();
 		}
 	}
@@ -70,27 +68,26 @@ public class Handler {
 	 * @return List<GPU> - list with GPU's
 	 */
 	public List<GPU> getGPU() {
-		// Statement используется для того, чтобы выполнить sql-запрос
+		// Using statement for SQL-Query
 		try (Statement statement = this.connection.createStatement()) {
-			// В данный список будем загружать наши продукты, полученные из БД
+			// Storage all information about product from database
 			List<GPU> products = new ArrayList<GPU>();
 
-			// В resultSet будет храниться результат нашего запроса,
-			// который выполняется командой statement.executeQuery()
+			// Storage result of execute query 
 			ResultSet resultSet = statement.executeQuery("SELECT * FROM products WHERE type = 'GPU'");
 
-			// Проходимся по нашему resultSet и заносим данные в products
+			// Adding information from DB to list products
 			while (resultSet.next()) {
 				products.add(new GPU(resultSet.getString("manufacturer"), resultSet.getString("name"),
 						resultSet.getString("type"), resultSet.getString("psi")));
 			}
-			// Возвращаем наш список
+			// Returning list with information
 			return products;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 
-			// Если произошла ошибка - возвращаем пустую коллекцию
+			// We got some error so just return  empty list
 			return Collections.emptyList();
 		}
 	}
@@ -101,27 +98,26 @@ public class Handler {
 	 * @return List<MotherBoard> - list with MotherBoard's
 	 */
 	public List<Motherboard> getMB() {
-		// Statement используется для того, чтобы выполнить sql-запрос
+		// Using statement for SQL-Query
 		try (Statement statement = this.connection.createStatement()) {
-			// В данный список будем загружать наши продукты, полученные из БД
+			// Storage all information about product from database
 			List<Motherboard> products = new ArrayList<Motherboard>();
 
-			// В resultSet будет храниться результат нашего запроса,
-			// который выполняется командой statement.executeQuery()
+			// Storage result of execute query 
 			ResultSet resultSet = statement.executeQuery("SELECT * FROM products WHERE type = 'Motherboard'");
 
-			// Проходимся по нашему resultSet и заносим данные в products
+			// Adding information from DB to list products
 			while (resultSet.next()) {
 				products.add(new Motherboard(resultSet.getString("manufacturer"), resultSet.getString("name"),
 						resultSet.getString("type"), resultSet.getString("socket"), resultSet.getString("psi")));
 			}
-			// Возвращаем наш список
+			// Returning list with information
 			return products;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 
-			// Если произошла ошибка - возвращаем пустую коллекцию
+			// We got some error so just return  empty list
 			return Collections.emptyList();
 		}
 	}

@@ -41,13 +41,13 @@ public class Application {
 		// Creating bean for working with a DataBase (SQLite)
 		Handler handler = context.getBean("handler", Handler.class);
 
-		// Lists for components and Получаем список CPU & GPU & MB
+		// Getting CPU & GPU & MB
 		List<CPU> cpuList = handler.getCPU();
 		List<GPU> gpuList = handler.getGPU();
 		List<Motherboard> mbList = handler.getMB();
 
 		// Building the computer & Printing completed builds
-		consolePrinter.print(app.computerbuilder.run(cpuList, gpuList, mbList));
+		consolePrinter.Print(app.computerbuilder.Run(cpuList, gpuList, mbList));
 
 		// Closing our context
 		context.close();

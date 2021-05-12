@@ -5,7 +5,6 @@ public class CPU extends Component {
 	protected int amountCores;
 	protected double clock;
 	
-	
 	public CPU(String manufacturer, String name, String type,
 			   String socket, int amountCores, double clock) {
 		super(manufacturer, name, type);
@@ -13,14 +12,6 @@ public class CPU extends Component {
 		this.amountCores = amountCores;
 		this.clock = clock;
 	}
-
-
-	@Override
-	public String toString() {
-		return "CPU [socket=" + socket + ", amountCores=" + amountCores + ", clock=" + clock + ", manufacturer="
-				+ manufacturer + ", name=" + name + ", type=" + type + "]";
-	}
-	
 
 	@Override
 	public String getDescription() {

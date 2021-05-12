@@ -8,13 +8,6 @@ public class GPU extends Component {
 		this.pci = pci;
 	}
 
-	
-	@Override
-	public String toString() {
-		return "GPU [pci=" + pci + ", manufacturer=" + manufacturer + ", name=" + name + ", type=" + type + "]";
-	}
-
-
 	@Override
 	public String getDescription() {
 		return "[" + type + "] " + manufacturer + " " + name + "\n" +

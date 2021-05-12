@@ -12,10 +12,20 @@ public class SystemUnit implements IPrintable {
 	protected CPU cpu;
 	protected GPU gpu;
 
+	/**
+	 * Default constructor
+	 */
 	public SystemUnit() {
 		super();
 	}
 
+	/**
+	 * Constructor with arguments
+	 * 
+	 * @param mb
+	 * @param cpu
+	 * @param gpu
+	 */
 	public SystemUnit(Motherboard mb, CPU cpu, GPU gpu) {
 		super();
 		this.mb = mb;
@@ -23,6 +33,11 @@ public class SystemUnit implements IPrintable {
 		this.gpu = gpu;
 	}
 
+	/**
+	 * @param cpu
+	 * @return cpu object  if cpu's and motherboard's sockets are compatible
+	 * 		   null 	   if cpu's and motherboard's sockets aren't compatible
+	 */
 	public CPU getCompatible(CPU cpu) {
 		if (cpu.socket.equals(this.mb.socket)) {
 			return cpu;
@@ -31,6 +46,11 @@ public class SystemUnit implements IPrintable {
 		return null;
 	}
 
+	/**
+	 * @param gpu
+	 * @return gpu object  if gpu's and motherboard's PCI versions are compatible
+	 * 		   null 	   if gpu's and motherboard's PCI versions aren't compatible
+	 */
 	public GPU getCompatible(GPU gpu) {
 		if (gpu.pci.equals(this.mb.pci)) {
 			return gpu;
@@ -39,6 +59,11 @@ public class SystemUnit implements IPrintable {
 		return null;
 	}
 
+	/**
+	 * @param mb
+	 * @return mb object   if cpu's and motherboard's sockets are compatible
+	 * 		   null 	   if cpu's and motherboard's sockets aren't compatible
+	 */
 	public Motherboard getCompatible(Motherboard mb) {
 		if (this.cpu != null) {
 			if (this.cpu.socket.equals(mb.socket)) {
@@ -51,18 +76,39 @@ public class SystemUnit implements IPrintable {
 		return null;
 	}
 
+	/**
+	 * Setter
+	 * 
+	 * @param mb
+	 */
 	public void setMotherboard(Motherboard mb) {
 		this.mb = mb;
 	}
 
+	/**
+	 * Setter
+	 * 
+	 * @param cpu
+	 */
 	public void setCPU(CPU cpu) {
 		this.cpu = cpu;
 	}
 
+	/**
+	 * Setter
+	 * 
+	 * @param gpu
+	 */
 	public void setGPU(GPU gpu) {
 		this.gpu = gpu;
 	}
 
+	/**
+	 * @return info about system unit components
+	 * 1) cpu's info
+	 * 2) gpu's info
+	 * 3) motherboards' info
+	 */
 	@Override
 	public String getDescription() {
 		// TODO: Checking it BEFORE calling the function

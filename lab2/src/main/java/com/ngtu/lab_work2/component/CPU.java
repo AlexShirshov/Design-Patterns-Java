@@ -5,6 +5,16 @@ public class CPU extends Component {
 	protected int amountCores;
 	protected double clock;
 	
+	/**
+	 * Constructor with arguments
+	 * 
+	 * @param manufacturer
+	 * @param name
+	 * @param type
+	 * @param socket
+	 * @param amountCores
+	 * @param clock
+	 */
 	public CPU(String manufacturer, String name, String type,
 			   String socket, int amountCores, double clock) {
 		super(manufacturer, name, type);
@@ -13,6 +23,15 @@ public class CPU extends Component {
 		this.clock = clock;
 	}
 
+	/**
+	 * @return info about cpu object
+	 * 1) type
+	 * 2) manufacturer
+	 * 3) name
+	 * 4) socket
+	 * 5) amount of cores
+	 * 6) clock
+	 */
 	@Override
 	public String getDescription() {
 		return "[" + type + "] " + manufacturer + " " + name + "\n" +

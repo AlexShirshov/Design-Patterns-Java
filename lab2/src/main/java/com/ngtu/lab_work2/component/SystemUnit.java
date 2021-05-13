@@ -1,5 +1,6 @@
 package com.ngtu.lab_work2.component;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -8,6 +9,7 @@ import com.ngtu.lab_work2.printers.IPrintable;
 @Component("systemunit")
 @Scope("prototype")
 public class SystemUnit implements IPrintable {
+	
 	protected Motherboard mb;
 	protected CPU cpu;
 	protected GPU gpu;

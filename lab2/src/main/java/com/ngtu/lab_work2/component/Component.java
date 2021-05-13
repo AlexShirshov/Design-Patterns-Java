@@ -2,6 +2,8 @@ package com.ngtu.lab_work2.component;
 
 import com.ngtu.lab_work2.printers.IPrintable;
 
+
+
 public abstract class Component implements IPrintable {
 	protected String manufacturer;
 	protected String name;
@@ -10,7 +12,7 @@ public abstract class Component implements IPrintable {
 	/**
 	 * Default constructor
 	 */
-	public Component() {
+	public Component(){
 		super();
 	}
 	

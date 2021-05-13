@@ -5,12 +5,19 @@ import com.ngtu.lab_work2.component.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component("computerbuilder")
-@Scope("singleton")
+@Component
 public class ComputerBuilder {
+	
+	@Bean
+	public SystemUnit[] ComputerBuilder(List<CPU> cpuList, List<GPU> gpuList, List<Motherboard> mbList) {
+		return Run(cpuList, gpuList, mbList);
+	}
+	
 	public SystemUnit[] Run(List<CPU> cpuList, List<GPU> gpuList, List<Motherboard> mbList) {
 		// First we set all motherboards and get all
 		// variants of system units

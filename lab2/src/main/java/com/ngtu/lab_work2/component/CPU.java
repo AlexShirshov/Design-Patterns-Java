@@ -1,5 +1,6 @@
 package com.ngtu.lab_work2.component;
 
+
 public class CPU extends Component {
 	protected String socket;
 	protected int amountCores;

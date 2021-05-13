@@ -25,9 +25,6 @@ import org.springframework.stereotype.Component;
 @Component("application")
 @Scope("singleton")
 public class Application {
-	@Autowired
-	private ComputerBuilder computerbuilder;
-
 	public static void main(String[] args) {
 		// Getting context from the XML file
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -40,15 +37,15 @@ public class Application {
 
 		// Creating bean for working with a DataBase (SQLite)
 		Handler handler = context.getBean("handler", Handler.class);
-
+		
 		// Getting CPU & GPU & MB
 		List<CPU> cpuList = handler.getCPU();
 		List<GPU> gpuList = handler.getGPU();
 		List<Motherboard> mbList = handler.getMB();
 
 		// Building the computer & Printing completed builds
-		consolePrinter.Print(app.computerbuilder.Run(cpuList, gpuList, mbList));
-
+		consolePrinter.Print(context.getBean(ComputerBuilder.class).ComputerBuilder(cpuList, gpuList, mbList));
+		
 		// Closing our context
 		context.close();
 	}

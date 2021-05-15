@@ -36,55 +36,13 @@ public class SystemUnit implements IPrintable {
 	
 	/**
 	 * 
-	 * @return true if compatible otherwise false
+	 * @return true if each component is compatible with other
+	 * 		   else false
 	 */
 	public boolean isCompatible() {
 		return this.cpu != null && this.gpu != null && this.mb != null 
 				&& this.cpu.socket.equals(this.mb.socket) 
 				&& this.gpu.pci.equals(this.mb.pci);
-	}
-
-	/**
-	 * @param cpu
-	 * @return cpu object  if cpu's and motherboard's sockets are compatible
-	 * 		   null 	   if cpu's and motherboard's sockets aren't compatible
-	 */
-	public CPU getCompatible(CPU cpu) {
-		if (cpu.socket.equals(this.mb.socket)) {
-			return cpu;
-		}
-
-		return null;
-	}
-
-	/**
-	 * @param gpu
-	 * @return gpu object  if gpu's and motherboard's PCI versions are compatible
-	 * 		   null 	   if gpu's and motherboard's PCI versions aren't compatible
-	 */
-	public GPU getCompatible(GPU gpu) {
-		if (gpu.pci.equals(this.mb.pci)) {
-			return gpu;
-		}
-
-		return null;
-	}
-
-	/**
-	 * @param mb
-	 * @return mb object   if cpu's and motherboard's sockets are compatible
-	 * 		   null 	   if cpu's and motherboard's sockets aren't compatible
-	 */
-	public Motherboard getCompatible(Motherboard mb) {
-		if (this.cpu != null) {
-			if (this.cpu.socket.equals(mb.socket)) {
-				return mb;
-			}
-		} else {
-			return mb;
-		}
-
-		return null;
 	}
 
 	/**
